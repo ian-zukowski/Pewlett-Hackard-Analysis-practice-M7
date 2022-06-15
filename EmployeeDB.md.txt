@@ -1,37 +1,37 @@
-Departments
+departments
 -
 dept_no varchar pk
 dept_name varchar
 
-Dept_Emp
+dept_emp
 -
 dept_no varchar pk fk -< Departments.dept_no
 emp_no int pk fk -< Employees.emp_no
 from_date date
 to_date date
 
-Salaries
+salaries
 -
 emp_no int pk fk -< Employees.emp_no
 salary int
 from_date date
 to_date date
 
-Managers
+dept_manager
 -
 dept_no varchar pk fk - Departments.dept_no
 emp_no int pk fk - Employees.emp_no
 from_date date
 to_date date
 
-Titles
+titles
 -
 emp_no int pk fk -< Employees.emp_no
 title pk varchar
 from_date pk date
 to_date date
 
-Employees
+employees
 -
 emp_no int pk fk
 birth_date date
@@ -39,3 +39,27 @@ first_name varchar
 last_name varchar
 gender varchar
 hire_date date
+
+dept_retirements
+-
+dept_name varchar(40) pk fk >- departments.dept_name
+dept_no varchar(40) pk fk >- departments.dept_no
+eligible_retirees bigint
+
+management_information
+-
+dept_no varchar(4) pk fk >- departments.dept_no
+dept_name varchar(40) pk fk >- departments.dept_name
+emp_no int fk - dept_manager.emp_no
+last_name varchar fk - employees.last_name
+first_name varchar fk - employees.first_name
+from_date date fk - dept_emp.from_date
+to_date date fk - dept_emp.to_date
+
+employee_information
+-
+emp_no int pk fk - employees.emp_no
+last_name varchar fk - employees.last_name
+first_name varachar fk - employees.first_name
+gender varchar(1) fk - employees.gender
+salary int fk - salaries.salary
